@@ -5,7 +5,7 @@ defmodule Wobserver.Application do
 
   use Application
 
-  alias Plug.Adapters.Cowboy
+  alias Plug.Cowboy
 
   alias Wobserver.Page
   alias Wobserver.Util.Metrics
@@ -77,6 +77,6 @@ defmodule Wobserver.Application do
       ],
     ]
 
-    Cowboy.child_spec(:http, Wobserver.Web.Router, [], options)
+    Cowboy.child_spec(scheme: :http, plug: Wobserver.Web.Router, options: options)
   end
 end
